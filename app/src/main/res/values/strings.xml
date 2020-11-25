@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">MQTT Sample</string>
+    <string name="connect_fragment_label">Connect Fragment</string>
+    <string name="client_fragment_label">Client Fragment</string>
+    <string name="button_connect_text">Connect</string>
+    <string name="button_disconnect_text">Disconnect</string>
+    <string name="button_publish_text">Publish</string>
+    <string name="button_subscribe_text">Subscribe</string>
+    <string name="button_unsubscribe_text">Unsubscribe</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="client_id">Client ID</string>
+    <string name="server_uri">Server URI</string>
+    <string name="topic">Topic</string>
+    <string name="message">Message</string>
+    <string name="pre_fill">Pre Fill</string>
+    <string name="fill_fields">Fill in the fields in the form below and connect it.</string>
+    <string name="no_internet_connection">Internet connection not available</string>
+    <string name="clean">Clean</string>
+    <string name="subscribe">subscribe</string>
+    <string name="subscribe_success">Subscribed to: %1$s!</string>
+    <string name="subscribe_failure">Failed to subscribe to: %1$s!</string>
+    <string name="unsubscribe">unsubscribe</string>
+    <string name="unsubscribe_success">Unsubscribed to: %1$s!</string>
+    <string name="unsubscribe_failure">Failed to subscribe to: %1$s!</string>
+    <string name="publish">publish</string>
+    <string name="publish_success">Publish message: %1$s! to topic: %2$s!</string>
+    <string name="publish_failure">Failed to publish message to topic</string>
+    <string name="disconnect">disconnect</string>
+    <string name="disconnection_success">Disconnection success</string>
+    <string name="disconnection_failure">Failed to disconnect</string>
+    <string name="no_server_connected">Impossible to %1$s!, no server connected</string>
+    <string name="delivery_complete">Delivery complete</string>
+    <string name="receive_message">Receive message: %1$s! from topic: %2$s!</string>
+    <string name="connection_lost">Connection lost %1$s!</string>
+    <string name="connection_success">Connection success</string>
+    <string name="connection_failure">Connection failure: %1$s!</string>
+
+    <!-- PRE FILL -->
+    <string name="mqtt_server_uri">N/A</string>
+    <string name="mqtt_cliend_id">N/A</string>
+    <string name="mqtt_username">N/A</string>
+    <string name="mqtt_password">N/A</string>
+    <string name="mqtt_test_topic">N/A</string>
+    <string name="zero">N/A</string>
+</resources>
