@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.findProperty("android.compileSdkVersion") as Integer
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.barros.mqttsample"
-        minSdkVersion 29
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        applicationId findProperty("android.applicationId")
+        targetSdkVersion findProperty("android.targetSdkVersion") as Integer
+        minSdkVersion findProperty("android.minSdkVersion") as Integer
+        versionCode findProperty("android.minSdkVersion") as Integer
+        versionName findProperty("android.versionName")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
