@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="clientViewModel"
             type="com.barros.mqttsample.clientfragment.ClientViewModel" />
     </data>
 
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="75dp"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> viewModel.clean()}"
+            android:onClick="@{() -> clientViewModel.clean()}"
             android:text="@string/clean"
             app:layout_constraintBottom_toTopOf="@+id/preFillClient"
             app:layout_constraintEnd_toEndOf="@+id/unsubscribe"
@@ -35,7 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> viewModel.preFill()}"
+            android:onClick="@{() -> clientViewModel.preFill()}"
             android:text="@string/pre_fill"
             app:layout_constraintBottom_toTopOf="@+id/disconnect"
             app:layout_constraintEnd_toEndOf="@+id/unsubscribe"
@@ -49,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:onClick="@{() -> viewModel.disconnect()}"
+            android:onClick="@{() -> clientViewModel.disconnect()}"
             android:text="@string/button_disconnect_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/unsubscribe"
@@ -98,7 +98,7 @@
             android:ems="15"
             android:hint="@string/topic"
             android:inputType="text"
-            android:text="@{viewModel.pubTopic}"
+            android:text="@{clientViewModel.pubTopic}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/puttopicText" />
@@ -112,7 +112,7 @@
             android:ems="15"
             android:hint="@string/message"
             android:inputType="text"
-            android:text="@{viewModel.subTopic}"
+            android:text="@{clientViewModel.subTopic}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subtopicText" />
@@ -126,7 +126,7 @@
             android:ems="15"
             android:hint="@string/topic"
             android:inputType="text"
-            android:text="@{viewModel.message}"
+            android:text="@{clientViewModel.message}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pubmsgText" />

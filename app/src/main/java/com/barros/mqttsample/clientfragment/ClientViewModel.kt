@@ -1,7 +1,6 @@
 package com.barros.mqttsample.clientfragment
 
 import android.content.Context
-import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -18,6 +17,7 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.IMqttToken
 import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttMessage
+import timber.log.Timber
 
 class ClientViewModel @ViewModelInject constructor(
     @ApplicationContext application: Context,
@@ -49,28 +49,28 @@ class ClientViewModel @ViewModelInject constructor(
             password = connectInfo.password,
             cbConnect = object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.connection_success))
+                    Timber.d(applicationContext.get()!!.getString(R.string.connection_success))
                     _showToast.value = applicationContext.get()!!.getString(R.string.connection_success)
                 }
 
                 override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.connection_failure, exception))
+                    Timber.d(applicationContext.get()!!.getString(R.string.connection_failure, exception))
                     _showToast.value = applicationContext.get()!!.getString(R.string.connection_failure, exception)
                     _navigateToConnect.value = true
                 }
             },
             cbClient = object : MqttCallback {
                 override fun connectionLost(cause: Throwable?) {
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.connection_lost, cause))
+                    Timber.d(applicationContext.get()!!.getString(R.string.connection_lost, cause))
                 }
 
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.receive_message, message, topic))
+                    Timber.d(applicationContext.get()!!.getString(R.string.receive_message, message, topic))
                     _showToast.value = applicationContext.get()!!.getString(R.string.receive_message, message, topic)
                 }
 
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.delivery_complete))
+                    Timber.d(applicationContext.get()!!.getString(R.string.delivery_complete))
                 }
             }
         )
@@ -83,12 +83,12 @@ class ClientViewModel @ViewModelInject constructor(
                 qos = 1,
                 cbSubscribe = object : IMqttActionListener {
                     override fun onSuccess(asyncActionToken: IMqttToken?) {
-                        Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.subscribe_success, topic))
+                        Timber.d(applicationContext.get()!!.getString(R.string.subscribe_success, topic))
                         _showToast.value = applicationContext.get()!!.getString(R.string.subscribe_success, topic)
                     }
 
                     override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-                        Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.subscribe_failure, topic))
+                        Timber.d(applicationContext.get()!!.getString(R.string.subscribe_failure, topic))
                         _showToast.value = applicationContext.get()!!.getString(R.string.subscribe_failure, topic)
                     }
                 })
@@ -101,12 +101,12 @@ class ClientViewModel @ViewModelInject constructor(
                 topic = topic,
                 cbUnsubscribe = object : IMqttActionListener {
                     override fun onSuccess(asyncActionToken: IMqttToken?) {
-                        Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.unsubscribe_success, topic))
+                        Timber.d(applicationContext.get()!!.getString(R.string.unsubscribe_success, topic))
                         _showToast.value = applicationContext.get()!!.getString(R.string.unsubscribe_success, topic)
                     }
 
                     override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-                        Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.unsubscribe_failure, topic))
+                        Timber.d(applicationContext.get()!!.getString(R.string.unsubscribe_failure, topic))
                         _showToast.value = applicationContext.get()!!.getString(R.string.unsubscribe_failure, topic)
                     }
                 })
@@ -122,13 +122,13 @@ class ClientViewModel @ViewModelInject constructor(
                 retained = false,
                 cbPublish = object : IMqttActionListener {
                     override fun onSuccess(asyncActionToken: IMqttToken?) {
-                        Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.publish_success, message, topic))
+                        Timber.d(applicationContext.get()!!.getString(R.string.publish_success, message, topic))
                         _showToast.value = applicationContext.get()!!.getString(R.string.publish_success, message, topic)
                     }
 
                     override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
                         _showToast.value = applicationContext.get()!!.getString(R.string.publish_failure)
-                        Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.publish_failure))
+                        Timber.d(applicationContext.get()!!.getString(R.string.publish_failure))
                     }
                 })
         }
@@ -138,14 +138,14 @@ class ClientViewModel @ViewModelInject constructor(
         checkConnection(applicationContext.get()!!.getString(R.string.disconnect)) {
             mqttClient.disconnect(object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.disconnection_success))
+                    Timber.d(applicationContext.get()!!.getString(R.string.disconnection_success))
                     _showToast.value = applicationContext.get()!!.getString(R.string.disconnection_success)
                     _navigateToConnect.value = true
                 }
 
                 override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
                     _showToast.value = applicationContext.get()!!.getString(R.string.disconnection_failure)
-                    Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.disconnection_failure))
+                    Timber.d(applicationContext.get()!!.getString(R.string.disconnection_failure))
                 }
             })
         }
@@ -156,7 +156,7 @@ class ClientViewModel @ViewModelInject constructor(
             block()
         } else {
             _showToast.value = applicationContext.get()!!.getString(R.string.no_server_connected, message)
-            Log.d(this.javaClass.name, applicationContext.get()!!.getString(R.string.no_server_connected, message))
+            Timber.d(applicationContext.get()!!.getString(R.string.no_server_connected, message))
         }
     }
 

@@ -22,9 +22,6 @@ class ClientFragment : Fragment() {
     ): View {
 
         val viewModel: ClientViewModel by viewModels()
-        val binding = FragmentClientBinding.inflate(inflater)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
 
         activity?.onBackPressedDispatcher?.addCallback(
             viewLifecycleOwner,
@@ -46,18 +43,21 @@ class ClientFragment : Fragment() {
             }
         })
 
-        binding.subscribe.setOnClickListener {
-            viewModel.subscribe(binding.subtopic.text.toString())
-        }
+        return FragmentClientBinding.inflate(inflater).apply {
+            clientViewModel = viewModel
+            lifecycleOwner = this@ClientFragment
 
-        binding.unsubscribe.setOnClickListener {
-            viewModel.unsubscribe(binding.subtopic.text.toString())
-        }
+            subscribe.setOnClickListener {
+                viewModel.subscribe(subtopic.text.toString())
+            }
 
-        binding.publish.setOnClickListener {
-            viewModel.publish(binding.pubtopic.text.toString(), binding.pubmsg.text.toString())
-        }
+            unsubscribe.setOnClickListener {
+                viewModel.unsubscribe(subtopic.text.toString())
+            }
 
-        return binding.root
+            publish.setOnClickListener {
+                viewModel.publish(pubtopic.text.toString(), pubmsg.text.toString())
+            }
+        }.root
     }
 }

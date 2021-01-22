@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="connectViewModel"
             type="com.barros.mqttsample.connectfragment.ConnectViewModel" />
     </data>
 
@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> viewModel.clean()}"
+            android:onClick="@{() -> connectViewModel.clean()}"
             android:text="@string/clean"
             app:layout_constraintBottom_toTopOf="@+id/preFillConnect"
             app:layout_constraintEnd_toEndOf="@+id/password"
@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> viewModel.preFill()}"
+            android:onClick="@{() -> connectViewModel.preFill()}"
             android:text="@string/pre_fill"
             app:layout_constraintBottom_toTopOf="@+id/connect"
             app:layout_constraintEnd_toEndOf="@+id/password"
@@ -65,7 +65,7 @@
             android:ems="15"
             android:hint="@string/server_uri"
             android:inputType="text"
-            android:text="@{viewModel.connectInfo.serverURI}"
+            android:text="@{connectViewModel.connectInfo.serverURI}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.445"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
             android:ems="15"
             android:hint="@string/client_id"
             android:inputType="text"
-            android:text="@{viewModel.connectInfo.clientID}"
+            android:text="@{connectViewModel.connectInfo.clientID}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.45"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
             android:ems="15"
             android:hint="@string/username"
             android:inputType="text"
-            android:text="@{viewModel.connectInfo.username}"
+            android:text="@{connectViewModel.connectInfo.username}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/usernameText"
@@ -124,7 +124,7 @@
             android:ems="15"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:text="@{viewModel.connectInfo.password}"
+            android:text="@{connectViewModel.connectInfo.password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordText"

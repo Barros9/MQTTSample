@@ -1,7 +1,6 @@
 package com.barros.mqttsample.client
 
 import android.content.Context
-import android.util.Log
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
@@ -10,6 +9,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttException
 import org.eclipse.paho.client.mqttv3.MqttMessage
+import timber.log.Timber
 
 class MQTTClient(
     context: Context?,
@@ -20,65 +20,65 @@ class MQTTClient(
 
     private val defaultCbConnect = object : IMqttActionListener {
         override fun onSuccess(asyncActionToken: IMqttToken?) {
-            Log.d(this.javaClass.name, "(Default) Connection success")
+            Timber.d("(Default) Connection success")
         }
 
         override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-            Log.d(this.javaClass.name, "Connection failure: $exception")
+            Timber.d("Connection failure: $exception")
         }
     }
 
     private val defaultCbClient = object : MqttCallback {
         override fun messageArrived(topic: String?, message: MqttMessage?) {
-            Log.d(this.javaClass.name, "Receive message: $message from topic: $topic")
+            Timber.d("Receive message: $message from topic: $topic")
         }
 
         override fun connectionLost(cause: Throwable?) {
-            Log.d(this.javaClass.name, "Connection lost $cause")
+            Timber.d("Connection lost $cause")
         }
 
         override fun deliveryComplete(token: IMqttDeliveryToken?) {
-            Log.d(this.javaClass.name, "Delivery completed")
+            Timber.d("Delivery completed")
         }
     }
 
     private val defaultCbSubscribe = object : IMqttActionListener {
         override fun onSuccess(asyncActionToken: IMqttToken?) {
-            Log.d(this.javaClass.name, "Subscribed to topic")
+            Timber.d("Subscribed to topic")
         }
 
         override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-            Log.d(this.javaClass.name, "Failed to subscribe topic")
+            Timber.d("Failed to subscribe topic")
         }
     }
 
     private val defaultCbUnsubscribe = object : IMqttActionListener {
         override fun onSuccess(asyncActionToken: IMqttToken?) {
-            Log.d(this.javaClass.name, "Unsubscribed to topic")
+            Timber.d("Unsubscribed to topic")
         }
 
         override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-            Log.d(this.javaClass.name, "Failed to unsubscribe topic")
+            Timber.d("Failed to unsubscribe topic")
         }
     }
 
     private val defaultCbPublish = object : IMqttActionListener {
         override fun onSuccess(asyncActionToken: IMqttToken?) {
-            Log.d(this.javaClass.name, "Message published to topic")
+            Timber.d("Message published to topic")
         }
 
         override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-            Log.d(this.javaClass.name, "Failed to publish message to topic")
+            Timber.d("Failed to publish message to topic")
         }
     }
 
     private val defaultCbDisconnect = object : IMqttActionListener {
         override fun onSuccess(asyncActionToken: IMqttToken?) {
-            Log.d(this.javaClass.name, "Disconnected")
+            Timber.d("Disconnected")
         }
 
         override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-            Log.d(this.javaClass.name, "Failed to disconnect")
+            Timber.d("Failed to disconnect")
         }
     }
 
