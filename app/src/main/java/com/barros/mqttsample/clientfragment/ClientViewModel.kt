@@ -1,8 +1,6 @@
 package com.barros.mqttsample.clientfragment
 
 import android.content.Context
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -10,8 +8,10 @@ import androidx.lifecycle.ViewModel
 import com.barros.mqttsample.R
 import com.barros.mqttsample.client.MQTTClient
 import com.barros.mqttsample.model.ConnectInfo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.IMqttToken
@@ -19,9 +19,10 @@ import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttMessage
 import timber.log.Timber
 
-class ClientViewModel @ViewModelInject constructor(
+@HiltViewModel
+class ClientViewModel @Inject constructor(
     @ApplicationContext application: Context,
-    @Assisted private val handle: SavedStateHandle
+    handle: SavedStateHandle
 ) : ViewModel() {
 
     private val applicationContext: WeakReference<Context> = WeakReference<Context>(application)

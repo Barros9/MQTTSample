@@ -4,16 +4,18 @@ import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.barros.mqttsample.R
 import com.barros.mqttsample.model.ConnectInfo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 
-class ConnectViewModel @ViewModelInject constructor(@ApplicationContext application: Context) : ViewModel() {
+@HiltViewModel
+class ConnectViewModel @Inject constructor(@ApplicationContext application: Context) : ViewModel() {
 
     private val applicationContext: WeakReference<Context> = WeakReference<Context>(application)
 
